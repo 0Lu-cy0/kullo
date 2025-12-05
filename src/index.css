@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.ant-spin-nested-loading > div > .ant-spin {
+  position: absolute !important;
+  width: 100% !important;
+  height: 100% !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  max-height: 100% !important;
+}

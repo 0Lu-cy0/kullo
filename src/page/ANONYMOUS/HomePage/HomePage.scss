@@ -1,0 +1,195 @@
+.home-page {
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  // Hero Section
+  .hero-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+
+    .hero-title {
+      font-size: 48px;
+      font-weight: bold;
+      line-height: 1.2;
+      margin-bottom: 24px;
+      color: white;
+    }
+
+    .hero-description {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 32px;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .hero-note {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .hero-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  // Features Section
+  .features-section {
+    padding: 80px 0;
+    background: #f7f9fc;
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+
+      h2 {
+        font-size: 36px;
+        font-weight: bold;
+        margin-bottom: 16px;
+        color: #172b4d;
+      }
+
+      p {
+        font-size: 18px;
+        color: #5e6c84;
+      }
+    }
+
+    .feature-card {
+      text-align: center;
+      border-radius: 8px;
+      transition:
+        transform 0.3s,
+        box-shadow 0.3s;
+
+      &:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+      }
+
+      .feature-icon {
+        font-size: 48px;
+        color: #0052cc;
+        margin-bottom: 16px;
+      }
+
+      h3 {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: #172b4d;
+      }
+
+      p {
+        font-size: 14px;
+        color: #5e6c84;
+        line-height: 1.6;
+      }
+    }
+  }
+
+  // Stats Section
+  .stats-section {
+    padding: 60px 0;
+    background: white;
+
+    .stat-item {
+      text-align: center;
+
+      h3 {
+        font-size: 48px;
+        font-weight: bold;
+        color: #0052cc;
+        margin-bottom: 8px;
+      }
+
+      p {
+        font-size: 16px;
+        color: #5e6c84;
+      }
+    }
+  }
+
+  // CTA Section
+  .cta-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #0052cc 0%, #0065ff 100%);
+    color: white;
+
+    .cta-content {
+      text-align: center;
+
+      h2 {
+        font-size: 40px;
+        font-weight: bold;
+        margin-bottom: 16px;
+        color: white;
+      }
+
+      p {
+        font-size: 18px;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .home-page {
+    .hero-section {
+      padding: 60px 0;
+
+      .hero-title {
+        font-size: 32px;
+      }
+
+      .hero-description {
+        font-size: 16px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+
+        .ant-btn {
+          width: 100%;
+        }
+      }
+    }
+
+    .features-section {
+      padding: 60px 0;
+
+      .section-header h2 {
+        font-size: 28px;
+      }
+    }
+
+    .stats-section {
+      .stat-item h3 {
+        font-size: 36px;
+      }
+    }
+
+    .cta-section {
+      padding: 60px 0;
+
+      .cta-content h2 {
+        font-size: 28px;
+      }
+    }
+  }
+}

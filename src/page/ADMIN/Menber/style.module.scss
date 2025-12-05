@@ -1,0 +1,168 @@
+.memberContainer {
+  padding: 24px;
+  background: #f5f5f5;
+  min-height: 100vh;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+    .title {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 600;
+      color: #1f2937;
+    }
+
+    .inviteBtn {
+      background: #3b82f6;
+      border-color: #3b82f6;
+      font-weight: 500;
+      height: 40px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      &:hover {
+        background: #2563eb;
+        border-color: #2563eb;
+      }
+    }
+
+    .headerActions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .projectSelect {
+      min-width: 240px;
+    }
+  }
+
+  .tabs {
+    background: white;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+    :global {
+      .ant-tabs-nav {
+        margin-bottom: 16px;
+      }
+
+      .ant-tabs-tab {
+        font-weight: 500;
+
+        &.ant-tabs-tab-active {
+          .ant-tabs-tab-btn {
+            color: #1890ff;
+          }
+        }
+      }
+    }
+  }
+
+  .memberTable {
+    :global {
+      .ant-table-thead>tr>th {
+        background: #f9fafb;
+        font-weight: 600;
+        color: #374151;
+      }
+
+      .ant-table-tbody>tr {
+        transition: all 0.3s;
+
+        &:hover {
+          background: #f9fafb;
+        }
+      }
+    }
+  }
+
+  .columnFullName {
+    font-weight: 500;
+    color: #1f2937;
+  }
+
+  .columnEmail {
+    color: #6b7280;
+  }
+
+  .roleTag {
+    font-weight: 500;
+    padding: 2px 12px;
+    border-radius: 12px;
+  }
+
+  .columnPermissions {
+    min-width: 280px;
+  }
+
+  .permissionCell {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .permissionTags {
+    max-width: 420px;
+  }
+
+  .permissionTag {
+    margin-right: 0;
+  }
+
+  .emptyPermissionTag {
+    background: #f3f4f6;
+    border-color: transparent;
+    color: #6b7280;
+  }
+
+  .btnAddPermission {
+    align-self: flex-start;
+  }
+
+  .permissionHelper {
+    margin-top: 12px;
+    font-size: 12px;
+    color: #6b7280;
+  }
+
+  .permissionSelect {
+    width: 100%;
+  }
+
+  .btnApprove {
+    background: #10b981;
+    border-color: #10b981;
+    font-weight: 500;
+
+    &:hover:not(:disabled) {
+      background: #059669;
+      border-color: #059669;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  .btnReject {
+    font-weight: 500;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
