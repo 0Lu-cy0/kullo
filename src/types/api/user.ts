@@ -14,3 +14,13 @@ export interface ChangePassword {
   newPassword: string
   confirmPassword: string
 }
+
+export interface ResetPasswordRequest {
+  email: string
+}
+
+export interface ResetPasswordConfirm {
+  resetToken: string
+  newPassword: string
+  confirmPassword: string
+}

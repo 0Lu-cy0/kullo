@@ -168,9 +168,13 @@ const LoginPage = ({ isRegister }: { isRegister: boolean }) => {
                     >
                       Ghi nhớ đăng nhập?
                     </Checkbox>
-                    <a href="#" className="forgot-link">
+                    <button
+                      type="button"
+                      className="forgot-link"
+                      onClick={() => navigate(ROUTER.QUEN_MAT_KHAU)}
+                    >
                       Quên mật khẩu?
-                    </a>
+                    </button>
                   </div>
                 </Form.Item>
                 <Button

@@ -155,6 +155,11 @@ export const StyleLoginPage = styled.div`
   .forgot-link {
     color: #666;
     text-decoration: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font: inherit;
 
     &:hover {
       color: #ff6b9d;

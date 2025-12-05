@@ -6,6 +6,8 @@ import MainLayout from '../components/Layouts/MainLayout'
 import NoHeaderLayout from '../components/Layouts/NoHeaderLayout'
 import LayoutAdmin from '../components/Layouts/LayoutAdmin'
 import LoginPage from '~/page/ANONYMOUS/LoginPage'
+import ForgotPasswordPage from '~/page/ANONYMOUS/ForgotPasswordPage'
+import ResetPasswordPage from '~/page/ANONYMOUS/ResetPasswordPage'
 import ProtectedRoute from '~/components/Layouts/ProtectRouter'
 import Board from '~/page/Boards/_id'
 import Dashboard from '~/page/ADMIN/Dashboad'
@@ -114,6 +116,22 @@ const routes = [
         element: (
           <LazyLoadingComponent>
             <LoginPage isRegister={true} />
+          </LazyLoadingComponent>
+        ),
+      },
+      {
+        path: ROUTER.QUEN_MAT_KHAU,
+        element: (
+          <LazyLoadingComponent>
+            <ForgotPasswordPage />
+          </LazyLoadingComponent>
+        ),
+      },
+      {
+        path: ROUTER.DAT_LAI_MAT_KHAU,
+        element: (
+          <LazyLoadingComponent>
+            <ResetPasswordPage />
           </LazyLoadingComponent>
         ),
       },

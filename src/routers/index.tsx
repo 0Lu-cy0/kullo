@@ -6,6 +6,8 @@ const ROUTER = {
   THONG_TIN_TAI_KHOAN: `/${CA_NHAN}`,
   DANG_NHAP: '/dang-nhap',
   DANG_KY: '/dang-ky',
+  QUEN_MAT_KHAU: '/quen-mat-khau',
+  DAT_LAI_MAT_KHAU: '/reset-password',
   DU_AN: '/du-an/:id',
   BANG_DIEU_KHIEN: '/bang-dieu-khien',
   ACCEPT_INVITE: '/invites/:inviteId/accept',

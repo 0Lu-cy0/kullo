@@ -1,4 +1,9 @@
-import type { Login, Register } from '~/types/api/user'
+import type {
+  Login,
+  Register,
+  ResetPasswordRequest,
+  ResetPasswordConfirm,
+} from '~/types/api/user'
 import http from '../index'
 import URL_AUTH from './urls'
 import type { ApiResponse } from '~/types/utils'
@@ -22,8 +27,11 @@ const ChangePassword = (body: {
   confirmPassword: string
 }): Promise<ApiResponse> => http.put(URL_AUTH.API_PUT_CHANGE_PASSWORD_URL, body)
 
-const RequestChangePassword = (body: { email: string }): Promise<ApiResponse> =>
-  http.post(URL_AUTH.API_REQUIES_CHANGE_PASSWORD_URL, body)
+const requestPasswordReset = (body: ResetPasswordRequest): Promise<ApiResponse> =>
+  http.post(URL_AUTH.API_POST_RESET_PASSWORD_REQUEST_URL, body)
+
+const confirmPasswordReset = (body: ResetPasswordConfirm): Promise<ApiResponse> =>
+  http.post(URL_AUTH.API_POST_RESET_PASSWORD_CONFIRM_URL, body)
 
 const getUserInfo = (): Promise<ApiResponse<UserModel>> => http.get(URL_AUTH.API_GET_USER_INFO_URL)
 
@@ -34,6 +42,7 @@ export const AuthService = {
   updateProfile,
   ChangePassword,
   getUserInfo,
-  RequestChangePassword,
+  requestPasswordReset,
+  confirmPasswordReset,
 }
 export default AuthService
