@@ -5,6 +5,52 @@
     padding: 0 24px;
   }
 
+  .logo-strip {
+    padding: 32px 0;
+    background: #f5f7fb;
+
+    .logo-strip__item {
+      display: flex;
+      justify-content: center;
+    }
+
+    .logo-chip {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: #ffffff;
+      box-shadow: 0 6px 24px rgba(15, 23, 42, 0.08);
+      min-width: 220px;
+
+      &__icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        font-weight: 700;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+      }
+
+      &__info {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+
+        span {
+          font-size: 11px;
+          color: #6b7280;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+
   // Hero Section
   .hero-section {
     padding: 80px 0;
@@ -189,6 +235,14 @@
 
       .cta-content h2 {
         font-size: 28px;
+      }
+    }
+
+    .logo-strip {
+      .logo-chip {
+        min-width: unset;
+        width: 100%;
+        justify-content: flex-start;
       }
     }
   }

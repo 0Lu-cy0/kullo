@@ -7,113 +7,87 @@ import ROUTER from '~/routers'
 
 const Header = () => {
   const navigate = useNavigate()
-  const productItems: MenuProps['items'] = [
-    { key: '1', label: <Link to="/crm">CRM</Link> },
-    { key: '2', label: <Link to="/tasks">Quản lý công việc</Link> },
-    { key: '3', label: <Link to="/drive">Lưu trữ đám mây</Link> },
+  const navSections: Array<{ label: string; items: MenuProps['items'] }> = [
+    {
+      label: 'SẢN PHẨM',
+      items: [
+        { key: 'product-board', label: <Link to="/platform/boards">Bảng Kanban Kullo</Link> },
+        { key: 'product-sprint', label: <Link to="/platform/sprint">Sprint & Agile</Link> },
+        { key: 'product-sync', label: <Link to="/platform/calendar">Lịch & Automation</Link> }
+      ]
+    },
+    {
+      label: 'GIẢI PHÁP',
+      items: [
+        { key: 'solution-engineering', label: <Link to="/solutions/engineering">Đội kỹ thuật</Link> },
+        { key: 'solution-marketing', label: <Link to="/solutions/marketing">Marketing đa kênh</Link> },
+        { key: 'solution-pmo', label: <Link to="/solutions/pmo">PMO & vận hành</Link> }
+      ]
+    },
+    {
+      label: 'TÀI NGUYÊN',
+      items: [
+        { key: 'resource-library', label: <Link to="/resources/library">Thư viện hướng dẫn</Link> },
+        { key: 'resource-webinar', label: <Link to="/resources/webinar">Webinar & workshop</Link> },
+        { key: 'resource-blog', label: <Link to="/blog">Blog Kullo</Link> }
+      ]
+    },
+    {
+      label: 'TÍCH HỢP',
+      items: [
+        { key: 'integration-finance', label: <Link to="/integrations/finance">Ngân hàng & cổng thanh toán</Link> },
+        { key: 'integration-devtools', label: <Link to="/integrations/devtools">DevOps & chat</Link> }
+      ]
+    },
+    {
+      label: 'ĐỐI TÁC',
+      items: [
+        { key: 'partner-network', label: <Link to="/partners">Mạng lưới triển khai</Link> },
+        { key: 'partner-program', label: <Link to="/partners/program">Trở thành đối tác</Link> }
+      ]
+    }
   ]
 
-  const resourceItems: MenuProps['items'] = [
-    { key: '1', label: <Link to="/docs">Tài liệu</Link> },
-    { key: '2', label: <Link to="/support">Hỗ trợ</Link> },
-    { key: '3', label: <Link to="/blog">Blog</Link> },
-  ]
-
-  const solutionItems: MenuProps['items'] = [
-    { key: '1', label: <Link to="/enterprise">Doanh nghiệp</Link> },
-    { key: '2', label: <Link to="/small-business">Doanh nghiệp nhỏ</Link> },
-  ]
-
-  const integrationItems: MenuProps['items'] = [
-    { key: '1', label: <Link to="/integrations">Tích hợp</Link> },
-  ]
-
-  const partnerItems: MenuProps['items'] = [
-    { key: '1', label: <Link to="/partners">Đối tác</Link> },
-  ]
-
-  const whyChooseItems: MenuProps['items'] = [
-    { key: '1', label: <Link to="/why-choose">Tại sao chọn chúng tôi</Link> },
+  const quickLinks = [
+    { key: 'pricing', label: 'BẢNG GIÁ', to: '/pricing' },
+    { key: 'case', label: 'KHÁCH HÀNG', to: '/case-studies' }
   ]
 
   return (
-    <header className="bitrix-header">
+    <header className="kullo-header">
       <div className="header-container">
         {/* Logo */}
         <Link to="/" className="logo">
-          <span className="logo-bitrix">Bitrix</span>
-          <span className="logo-24">24</span>
-          <span className="logo-registered">®</span>
+          <span className="logo-mark">K</span>
+          <div className="logo-text">
+            <span className="logo-title">Kullo</span>
+            <span className="logo-tagline">Workspace OS</span>
+          </div>
         </Link>
 
         {/* Navigation Menu */}
         <nav className="header-nav">
-          <Dropdown menu={{ items: productItems }} placement="bottomLeft">
-            <a onClick={(e) => e.preventDefault()} className="nav-link">
-              <Space>
-                SẢN PHẨM
-                <DownOutlined style={{ fontSize: '10px' }} />
-              </Space>
-            </a>
-          </Dropdown>
+          {navSections.map((section) => (
+            <Dropdown key={section.label} menu={{ items: section.items }} placement="bottomLeft">
+              <button type="button" className="nav-link" onClick={(e) => e.preventDefault()}>
+                <Space size={6}>
+                  {section.label}
+                  <DownOutlined style={{ fontSize: '10px' }} />
+                </Space>
+              </button>
+            </Dropdown>
+          ))}
 
-          <Link to="/pricing" className="nav-link">
-            GIÁ
-          </Link>
-
-          <Dropdown menu={{ items: resourceItems }} placement="bottomLeft">
-            <a onClick={(e) => e.preventDefault()} className="nav-link">
-              <Space>
-                TÀI NGUYÊN
-                <DownOutlined style={{ fontSize: '10px' }} />
-              </Space>
-            </a>
-          </Dropdown>
-
-          <Dropdown menu={{ items: solutionItems }} placement="bottomLeft">
-            <a onClick={(e) => e.preventDefault()} className="nav-link">
-              <Space>
-                GIẢI PHÁP
-                <DownOutlined style={{ fontSize: '10px' }} />
-              </Space>
-            </a>
-          </Dropdown>
-
-          <Dropdown menu={{ items: integrationItems }} placement="bottomLeft">
-            <a onClick={(e) => e.preventDefault()} className="nav-link">
-              <Space>
-                TÍCH HỢP
-                <DownOutlined style={{ fontSize: '10px' }} />
-              </Space>
-            </a>
-          </Dropdown>
-
-          <Dropdown menu={{ items: partnerItems }} placement="bottomLeft">
-            <a onClick={(e) => e.preventDefault()} className="nav-link">
-              <Space>
-                ĐỐI TÁC
-                <DownOutlined style={{ fontSize: '10px' }} />
-              </Space>
-            </a>
-          </Dropdown>
-
-          <Dropdown menu={{ items: whyChooseItems }} placement="bottomLeft">
-            <a onClick={(e) => e.preventDefault()} className="nav-link">
-              <Space>
-                VÌ SAO CHỌN BITRIX24
-                <DownOutlined style={{ fontSize: '10px' }} />
-              </Space>
-            </a>
-          </Dropdown>
+          {quickLinks.map((link) => (
+            <Link key={link.key} to={link.to} className="nav-link">
+              {link.label}
+            </Link>
+          ))}
         </nav>
 
         {/* Right Actions */}
         <div className="header-actions">
           <Button type="text" icon={<SearchOutlined />} className="search-btn" />
-
-          <Button type="primary" size="large" className="start-btn">
-            BẮT ĐẦU NGAY
-          </Button>
 
           <Button
             icon={<UserOutlined />}
@@ -123,12 +97,20 @@ const Header = () => {
             ĐĂNG NHẬP
           </Button>
 
+          <Button size="large" className="demo-btn" onClick={() => navigate('/book-demo')}>
+            ĐẶT LỊCH DEMO
+          </Button>
+
+          <Button type="primary" size="large" className="start-btn">
+            DÙNG THỬ MIỄN PHÍ
+          </Button>
+
           <Dropdown
             menu={{
               items: [
                 { key: 'vi', label: 'Tiếng Việt' },
-                { key: 'en', label: 'English' },
-              ],
+                { key: 'en', label: 'English' }
+              ]
             }}
           >
             <Button icon={<GlobalOutlined />} className="lang-btn">

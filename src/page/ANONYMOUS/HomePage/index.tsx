@@ -75,7 +75,7 @@ const stats = [
 const testimonials = [
   {
     quote:
-      '"Từ khi chuyển qua Trello24, đội mình giảm 35% thời gian họp cập nhật vì mọi dữ liệu đều realtime."',
+      '"Từ khi chuyển qua Kullo, đội mình giảm 35% thời gian họp cập nhật vì mọi dữ liệu đều realtime."',
     author: 'Linh Nguyễn',
     role: 'Head of Product · GHTK'
   },
@@ -87,7 +87,58 @@ const testimonials = [
   }
 ]
 
-const trustBadges = ['FPT Software', 'Viettel Solutions', 'MoMo', 'VNPay', 'VNG', 'Be Group']
+type TrustBadge = {
+  name: string
+  initials: string
+  gradient: string
+  textColor: string
+  tagline: string
+}
+
+const trustBadges: TrustBadge[] = [
+  {
+    name: 'FPT Software',
+    initials: 'FPT',
+    gradient: 'linear-gradient(135deg, #ff6f20, #ffb347)',
+    textColor: '#fff7f0',
+    tagline: 'Enterprise Tech'
+  },
+  {
+    name: 'Viettel Solutions',
+    initials: 'VT',
+    gradient: 'linear-gradient(135deg, #00a859, #006d3c)',
+    textColor: '#f0fff4',
+    tagline: 'Telecom'
+  },
+  {
+    name: 'MoMo',
+    initials: 'Mo',
+    gradient: 'linear-gradient(135deg, #d9017a, #ff4f9a)',
+    textColor: '#fff0f8',
+    tagline: 'E-Wallet'
+  },
+  {
+    name: 'VNPay',
+    initials: 'VP',
+    gradient: 'linear-gradient(135deg, #004aad, #00a4ff)',
+    textColor: '#f0f6ff',
+    tagline: 'Payment'
+  },
+  {
+    name: 'VNG',
+    initials: 'VNG',
+    gradient: 'linear-gradient(135deg, #ff5b2e, #ff9f45)',
+    textColor: '#fff7f0',
+    tagline: 'Digital Media'
+  },
+  {
+    name: 'Be Group',
+    initials: 'be',
+    gradient: 'linear-gradient(135deg, #ffe600, #ffb800)',
+    textColor: '#1f1400',
+    tagline: 'Mobility'
+  }
+]
 
 const HomePage = () => {
   return (
@@ -101,7 +152,7 @@ const HomePage = () => {
               </Title>
               <Paragraph className="hero-description">
                 Tổ chức backlog, sprint, lịch biểu và trao đổi nội bộ trên một mặt phẳng duy nhất.
-                Trello24 được thiết kế để bám sát quy trình Agile nhưng vẫn đủ linh hoạt cho các bộ
+                Kullo được thiết kế để bám sát quy trình Agile nhưng vẫn đủ linh hoạt cho các bộ
                 phận non-tech.
               </Paragraph>
               <div className="hero-actions">
@@ -150,8 +201,19 @@ const HomePage = () => {
         <div className="container">
           <Row gutter={[24, 24]} justify="center" align="middle">
             {trustBadges.map((badge) => (
-              <Col key={badge} xs={12} sm={8} md={4} className="logo-strip__item">
-                <Text>{badge}</Text>
+              <Col key={badge.name} xs={12} sm={8} md={4} className="logo-strip__item">
+                <div className="logo-chip">
+                  <span
+                    className="logo-chip__icon"
+                    style={{ background: badge.gradient, color: badge.textColor }}
+                  >
+                    {badge.initials}
+                  </span>
+                  <div className="logo-chip__info">
+                    <Text strong>{badge.name}</Text>
+                    <span>{badge.tagline}</span>
+                  </div>
+                </div>
               </Col>
             ))}
           </Row>
@@ -184,7 +246,7 @@ const HomePage = () => {
             <Col xs={24} lg={10}>
               <Title level={3}>Quy trình liền mạch từ backlog tới báo cáo</Title>
               <Paragraph>
-                Trello24 kết nối mọi bước của vòng đời dự án, đảm bảo thông tin không bị thất lạc
+                Kullo kết nối mọi bước của vòng đời dự án, đảm bảo thông tin không bị thất lạc
                 giữa các công cụ rời rạc.
               </Paragraph>
             </Col>
@@ -240,7 +302,7 @@ const HomePage = () => {
       <section className="cta-section">
         <div className="container">
           <div className="cta-content">
-            <Title level={2}>Sẵn sàng tăng tốc cùng Trello24?</Title>
+            <Title level={2}>Sẵn sàng tăng tốc cùng Kullo?</Title>
             <Paragraph>
               Khởi tạo workspace miễn phí, mời đội nhóm và khám phá hơn 40+ automation dựng sẵn.
             </Paragraph>

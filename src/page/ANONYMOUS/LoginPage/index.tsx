@@ -1,8 +1,8 @@
 import { Button, Checkbox, Col, Form, Input, message, Row } from 'antd'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import STORAGE, { getStorage, setStorage } from '~/libs/storage'
+import STORAGE, { setStorage } from '~/libs/storage'
 
 // import { ACCOUNT_TYPE_ADMIN, ACCOUNT_TYPE_DAI_DIEN, ACCOUNT_TYPE_KH } from 'src/constants/constants'
 // import roleService from 'src/services/RoleService'
@@ -11,14 +11,12 @@ import { StyleLoginPage } from './styled'
 import { setUserInfo } from '~/redux/slices/appGlobal.slide'
 import AuthService from '~/services/AuthService'
 import { StoreContext } from '~/libs/store'
-import { Lock, User, User2 } from 'lucide-react'
+import { Lock, User2 } from 'lucide-react'
 import ROUTER from '~/routers'
 
 const LoginPage = ({ isRegister }: { isRegister: boolean }) => {
-  const isLogin = getStorage(STORAGE.TOKEN)
   const [loading, setLoading] = useState(false)
   const [form] = Form.useForm()
-  const userInfo = getStorage(STORAGE.USER_INFO)
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const store: any = useContext(StoreContext)
@@ -34,10 +32,8 @@ const LoginPage = ({ isRegister }: { isRegister: boolean }) => {
     try {
       setLoading(true)
       const res = await AuthService.login({ ...form.getFieldsValue() })
-      console.log('✅ Login response Status:', res?.Status)
 
       if (res?.Status === 200) {
-        console.log('💾 Saving token and user info...')
         setStorage(STORAGE.TOKEN, res?.data?.accessToken)
         setStorage(STORAGE.USER_INFO, res?.data?._id)
         dispatch(setUserInfo(res?.data?._id))
@@ -45,23 +41,21 @@ const LoginPage = ({ isRegister }: { isRegister: boolean }) => {
 
         // Kiểm tra nếu có pendingInviteId thì chuyển đến trang accept invite
         const pendingInviteId = localStorage.getItem('pendingInviteId')
-        console.log('🔍 pendingInviteId:', pendingInviteId)
 
         if (pendingInviteId) {
-          console.log('🚀 Navigating to invite page:', `/invites/${pendingInviteId}/accept`)
           navigate(`/invites/${pendingInviteId}/accept`, { replace: true })
         } else if (routerBeforeLogin) {
-          console.log('🚀 Navigating to routerBeforeLogin:', routerBeforeLogin)
           navigate(routerBeforeLogin, { replace: true })
         } else {
-          console.log('🚀 Navigating to dashboard:', ROUTER.BANG_DIEU_KHIEN)
           navigate(ROUTER.BANG_DIEU_KHIEN, { replace: true })
         }
       } else if (res?.Status === 422) {
         message.error(res?.message)
       }
     } catch (error) {
-      console.error('❌ Login error:', error)
+      const errorMessage =
+        (error as any)?.response?.data?.message || 'Đăng nhập thất bại, vui lòng thử lại'
+      message.error(errorMessage)
     } finally {
       setLoading(false)
     }
@@ -78,8 +72,8 @@ const LoginPage = ({ isRegister }: { isRegister: boolean }) => {
         message.error(res?.message)
       }
     } catch (error) {
-      console.error('Register error:', error)
-      message.error('Đăng ký thất bại')
+      const errorMessage = (error as any)?.response?.data?.message || 'Đăng ký thất bại'
+      message.error(errorMessage)
     } finally {
       setLoading(false)
     }
@@ -120,8 +114,8 @@ const LoginPage = ({ isRegister }: { isRegister: boolean }) => {
                     rules={[
                       {
                         required: true,
-                        message: 'Thông tin không được để trống!',
-                      },
+                        message: 'Thông tin không được để trống!'
+                      }
                     ]}
                   >
                     <Input prefix={<User2 />} placeholder="Tên người dùng" size="large" />
@@ -132,8 +126,8 @@ const LoginPage = ({ isRegister }: { isRegister: boolean }) => {
                   rules={[
                     {
                       required: true,
-                      message: 'Thông tin không được để trống!',
-                    },
+                      message: 'Thông tin không được để trống!'
+                    }
                   ]}
                 >
                   <Input prefix={<User2 />} placeholder="nhap-email@domain.com" size="large" />
@@ -143,16 +137,16 @@ const LoginPage = ({ isRegister }: { isRegister: boolean }) => {
                   rules={[
                     {
                       required: true,
-                      message: 'Bạn chưa nhập mật khẩu!',
+                      message: 'Bạn chưa nhập mật khẩu!'
                     },
                     {
                       min: 8,
-                      message: 'Mật khẩu phải có ít nhất 8 ký tự',
+                      message: 'Mật khẩu phải có ít nhất 8 ký tự'
                     },
                     {
                       pattern: /^(?=.*[A-Za-z])(?=.*\d)/,
-                      message: 'Mật khẩu phải chứa ít nhất một chữ cái và một số',
-                    },
+                      message: 'Mật khẩu phải chứa ít nhất một chữ cái và một số'
+                    }
                   ]}
                 >
                   <Input.Password
